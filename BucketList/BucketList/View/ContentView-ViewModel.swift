@@ -5,7 +5,7 @@
 //  Created by Berardino Chiarello on 29/06/23.
 //
 
-import Foundation
+import SwiftUI
 import LocalAuthentication
 import MapKit
 
@@ -17,7 +17,15 @@ extension ContentView {
         //not settable from other scope
         @Published private(set) var locations = [Location]()
         @Published var selectedPlace : Location?
+        @Published var showPinScreen = false
         @Published var isUnlocked = false
+        
+        @Published var showAlert = false
+        @Published var alertTitle = "Error"
+        @Published var alertMessage = ""
+        
+        
+        let pin = "1234"
         
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
@@ -48,6 +56,7 @@ extension ContentView {
             save()
         }
         
+        //update place after modification
         func update(location: Location){
             guard let selectedPlace = selectedPlace else { return }
             
@@ -57,6 +66,7 @@ extension ContentView {
             }
         }
         
+        //delete selected place
         func delete(){
             guard let selectedPlace = selectedPlace else { return }
             
@@ -66,6 +76,7 @@ extension ContentView {
             }
         }
         
+        //Biometric authentication
         func authenticate() {
             let context = LAContext()
             var error: NSError?
@@ -74,14 +85,28 @@ extension ContentView {
                 let reason = "Please authenticate yourself to unlock your places."
                 
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                    if success {
-                        Task { @MainActor in
+                    Task { @MainActor in
+                        if success {
                             self.isUnlocked = true
                         }
-                    } else {
-                        // error
+                        else {
+                            self.showAlert = true
+                            self.alertMessage = "Sorry there was a problem with your authentication"
+                            
+                        }
                     }
                 }
+            } else {
+                showAlert = true
+                self.alertMessage = "Sorry your device doesn't support biometric authentication"
+                
+            }
+        }
+        
+        //check the entered pin
+        func pinAuthentication (insertPin: String) {
+            if insertPin == pin {
+                self.isUnlocked = true
             }
         }
     }

@@ -24,6 +24,7 @@ struct Page: Codable, Comparable {
         terms?["description"]?.first ?? "No further information"
     }
     
+    //conformance to comparable that let us use .sorted() on custom object without need of closure on the method
     static func <(lhs: Page, rhs: Page) -> Bool {
         lhs.title < rhs.title
     }
