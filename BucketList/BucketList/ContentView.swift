@@ -14,30 +14,22 @@ struct ContentView: View {
     var body: some View {
         if viewModel.isUnlocked {
             ZStack {
-                Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
-                    MapAnnotation(coordinate: location.coordinate) {
-                        VStack {
-                            Image(systemName: "star.circle")
-                                .resizable()
-                                .foregroundColor(.red)
-                                .frame(width: 44, height: 44)
-                                .background(.white)
-                                .clipShape(Circle())
-                            
-                            Text(location.name)
-                                .fixedSize()
+                Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations, annotationContent: { location in
+                        MapAnnotation(coordinate: location.coordinate) {
+                            VStack {
+                               LocationAnnotationView()
+                            }
+                            .onTapGesture {
+                                viewModel.selectedPlace = location
+                            }
                         }
-                        .onTapGesture {
-                            viewModel.selectedPlace = location
-                        }
-                    }
-                }
+                })
                 .ignoresSafeArea()
                 
                 Circle()
                     .fill(.blue)
                     .opacity(0.7)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 10, height: 10)
                 
                 VStack {
                     Spacer()
@@ -61,6 +53,8 @@ struct ContentView: View {
             .sheet(item: $viewModel.selectedPlace) { place in
                 EditView(location: place) { newLocation in
                     viewModel.update(location: newLocation)
+                } delete: {
+                        viewModel.delete()
                 }
             }
         } else {

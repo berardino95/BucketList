@@ -17,6 +17,8 @@ struct EditView: View {
     @Environment(\.dismiss) var dismiss
     var location: Location
     var onSave: (Location) -> Void
+    var delete: () -> Void
+    
     
     @State private var name: String
     @State private var description: String
@@ -63,6 +65,12 @@ struct EditView: View {
                         dismiss()
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Delete") {
+                        delete()
+                        dismiss()
+                    }
+                }
             }
             .task {
                 await fetchNearbyPlaces()
@@ -70,9 +78,10 @@ struct EditView: View {
         }
     }
     
-    init(location: Location, onSave: @escaping (Location) -> Void) {
+    init(location: Location, onSave: @escaping (Location) -> Void, delete: @escaping () -> Void) {
         self.location = location
         self.onSave = onSave
+        self.delete = delete
 
         //Assign the initial value of name to name and location @State variable
         _name = State(initialValue: location.name)
@@ -104,6 +113,6 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(location: Location.example) { _ in }
+        EditView(location: Location.example) { _ in } delete: { }
     }
 }

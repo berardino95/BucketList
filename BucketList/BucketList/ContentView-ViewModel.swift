@@ -12,7 +12,7 @@ import MapKit
 extension ContentView {
     
     @MainActor class ViewModel: ObservableObject {
-        @Published  var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 20, longitude: 15), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+        @Published  var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 10), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
         
         //not settable from other scope
         @Published private(set) var locations = [Location]()
@@ -57,7 +57,7 @@ extension ContentView {
             }
         }
         
-        func delete(location: Location){
+        func delete(){
             guard let selectedPlace = selectedPlace else { return }
             
             if let index = locations.firstIndex(of: selectedPlace) {

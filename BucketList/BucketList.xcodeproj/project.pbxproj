@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F4A47F62A4F40BE007C484B /* LocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4A47F52A4F40BD007C484B /* LocationAnnotationView.swift */; };
 		5F90E6652A4E0F9F00AEB61A /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90E6642A4E0F9F00AEB61A /* BucketListApp.swift */; };
 		5F90E6672A4E0F9F00AEB61A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90E6662A4E0F9F00AEB61A /* ContentView.swift */; };
 		5F90E6692A4E0FA100AEB61A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F90E6682A4E0FA100AEB61A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F4A47F52A4F40BD007C484B /* LocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationAnnotationView.swift; path = BucketList/LocationAnnotationView.swift; sourceTree = "<group>"; };
 		5F90E6612A4E0F9F00AEB61A /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F90E6642A4E0F9F00AEB61A /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		5F90E6662A4E0F9F00AEB61A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 		5F90E6582A4E0F9F00AEB61A = {
 			isa = PBXGroup;
 			children = (
+				5F4A47F52A4F40BD007C484B /* LocationAnnotationView.swift */,
 				5F90E6632A4E0F9F00AEB61A /* BucketList */,
 				5F90E6622A4E0F9F00AEB61A /* Products */,
 			);
@@ -158,6 +161,7 @@
 				5F90E6672A4E0F9F00AEB61A /* ContentView.swift in Sources */,
 				5F90E6772A4E113D00AEB61A /* Location.swift in Sources */,
 				5F90E6752A4E108B00AEB61A /* EditView.swift in Sources */,
+				5F4A47F62A4F40BE007C484B /* LocationAnnotationView.swift in Sources */,
 				5F90E6652A4E0F9F00AEB61A /* BucketListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
